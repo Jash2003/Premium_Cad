@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- FAVICON -->
+    <link rel="icon" type="image/x-icon" href="images/sq_logo.ico">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <title>Careers | PremiumCAD</title>
+</head>
+<body>
+    <nav>
+        <label class="logo">
+            <img class="original-logo" src="images/Logo_001-removebg-preview.png" alt="PremiumCAD">
+            <img class="alternate-logo" src="images/logo_mini.png" alt="PremiumCAD">
+        </label>
+        <ul>
+            <li><a class="active">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li class="dropdown">
+            <a href="services.html">Services</a>
+            <ul class="dropdown-content">
+                <li class="dropdown-part">
+                <a href="services.html#cad-services">CAD Services</a>
+                </li>
+                <li class="dropdown-part">
+                <a href="services.html#solar-services">Solar Designs</a>
+                </li>
+                <li class="dropdown-part">
+                <a href="services.html#gis-services">GIS Solutions</a>
+                </li>
+                <li class="dropdown-part">
+                <a href="services.html#telecom-services">Telecom Services</a>
+                </li>
+            </ul>
+            </li>
+            <li><a href="pathways.html">Pathways</a></li>
+            <li><a href="blog.html">Premium Blog</a></li>
+            <li><a href="index.html#getintouch">Contact Us</a></li>
+        </ul>
+        <label id="icon">
+            <i class="fa-solid fa-bars"></i>
+        </label>
+    </nav>
+
+    <div id="main">
+
+        <div id="career_banner"></div>
+
+        <div id="career_content">
+            <h1 id="career_heading">
+                Where intelligence meets engineering excellence
+            </h1>
+            <p id="career_content">
+                At PremiumCAD, we're driven to build meaningful 
+                things, embrace challenging problems and work with 
+                technologies we enjoy. We take pride in the largest 
+                share of strong middle to senior designers in our 
+                company compared to the market average.
+                <br>
+                That means getting lots of opportunities for geeky 
+                conversations with your peers, celebrating being 
+                cleverly unconventional and continuously getting 
+                better in everything you do. We cultivate inquiring 
+                minds and love constantly pushing our boundaries.
+            </p>
+        </div>
+
+        <div class="jobs-list-container">
+            <h1>Join our Awesome Team</h1>
+            <h2>5 Jobs</h2>
+        
+            <input class="job-search" type="text" placeholder="Search here..." />
+        
+            <div class="jobs"></div>
+        </div>
+    </div>
+
+    <!-- JS File -->
+    <script type="text/javascript" src="js/script.js"></script>
+</body>
+<script>
+    const jobs = [
+    {
+        title: "Software Engineer",
+        image: "images/career/software-engineer.svg",
+        details:
+        "Responsible for designing, developing and maintaining software systems and applications.",
+        openPositions: "2",
+        link: "#",
+    },
+
+    {
+        title: "Data Scientist",
+        image: "images/career/data-scientist.svg",
+        details:
+        "Responsible for collecting, analyzing and interpreting large data sets to help organizations make better decisions.",
+        openPositions: "3",
+        link: "#",
+    },
+
+    {
+        title: "Project Manager",
+        image: "images/career/project-manager.svg",
+        details:
+        "Responsible for planning, executing and closing projects on time and within budget.",
+        openPositions: "1",
+        link: "#",
+    },
+
+    {
+        title: "Product Manager",
+        image: "images/career/product-manager.svg",
+        details:
+        "Responsible for managing the entire product life cycle, from ideation to launch and post-launch maintenance.",
+        openPositions: "1",
+        link: "#",
+    },
+
+    {
+        title: "Sales Representative",
+        image: "images/career/sales-representative.svg",
+        details:
+        "Responsible for reaching out to potential customers and closing sales deals.",
+        openPositions: "4",
+        link: "#",
+    },
+
+    {
+        title: "Marketing Manager",
+        image: "images/career/marketing-manager.svg",
+        details:
+        "Responsible for creating and executing marketing strategies to promote a company or product.",
+        openPositions: "1",
+        link: "#",
+    },
+    ];
+
+    const jobsHeading = document.querySelector(".jobs-list-container h2");
+    const jobsContainer = document.querySelector(".jobs-list-container .jobs");
+    const jobSearch = document.querySelector(".jobs-list-container .job-search");
+
+    let searchTerm = "";
+
+    if (jobs.length == 1) {
+    jobsHeading.innerHTML = ${jobs.length} Job;
+    } else {
+    jobsHeading.innerHTML = ${jobs.length} Jobs;
+    }
+
+    const createJobListingCards = () => {
+    jobsContainer.innerHTML = "";
+
+    jobs.forEach((job) => {
+        if (job.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+        let jobCard = document.createElement("div");
+        jobCard.classList.add("job");
+
+        let image = document.createElement("img");
+        image.src = job.image;
+
+        let title = document.createElement("h3");
+        title.innerHTML = job.title;
+        title.classList.add("job-title");
+
+        let details = document.createElement("div");
+        details.innerHTML = job.details;
+        details.classList.add("details");
+
+        let detailsBtn = document.createElement("a");
+        detailsBtn.href = job.link;
+        detailsBtn.innerHTML = "More Details";
+        detailsBtn.classList.add("details-btn");
+
+        let openPositions = document.createElement("span");
+        openPositions.classList.add("open-positions");
+
+        if (job.openPositions == 1) {
+            openPositions.innerHTML = ${job.openPositions} open position;
+        } else {
+            openPositions.innerHTML = ${job.openPositions} open positions;
+        }
+
+        jobCard.appendChild(image);
+        jobCard.appendChild(title);
+        jobCard.appendChild(details);
+        jobCard.appendChild(detailsBtn);
+        jobCard.appendChild(openPositions);
+
+        jobsContainer.appendChild(jobCard);
+        }
+    });
+    };
+
+    createJobListingCards();
+
+    jobSearch.addEventListener("input", (e) => {
+    searchTerm = e.target.value;
+
+    createJobListingCards();
+    });
+</script>
+</html>

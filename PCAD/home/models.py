@@ -9,3 +9,17 @@ class Blog(models.Model):
 
 def __str__(self):
         return self.title
+
+class Applicant(models.Model):
+      jobrole = models.TextField()
+      name = models.TextField()
+      email = models.TextField()
+      phone = models.TextField()
+      location = models.TextField()
+      exprience = models.TextField()
+      resume = models.FileField(upload_to="resumes")
+
+
+      
+
+
